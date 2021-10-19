@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4.js"></script>
+    <link rel="stylesheet" href="https://openlayers.org/en/v5.3.0/css/ol.css" type="text/css">
+    <script src="https://openlayers.org/en/v5.3.0/build/ol.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <!--
+    <link rel="stylesheet" href="../js/ol.css" type="text/css">
+    <script src="../js/ol.js"></script>
+
+    https://openlayers.org/en/v6.4.3/build/ol.js
+    https://openlayers.org/en/v5.3.0/build/ol.js
+    https://openlayers.org/en/v4.6.5/build/ol.js
+    https://openlayers.org/en/v3.20.1/build/ol.js
+
+    https://openlayers.org/en/v6.4.3/css/ol.css
+    https://openlayers.org/en/v5.3.0/css/ol.css
+    https://openlayers.org/en/v4.6.5/css/ol.css
+    https://openlayers.org/en/v3.20.1/css/ol.css
+    -->
+    <title>WMS API / WFS API</title>
+</head>
+<body>
+    <div>
+
+        <select id="select_wms">
+            <option>선택</option>
+            <option value='LT_C_AISPRHC'>비행금지구역</option>
+            <option value='LT_C_AISFIRC'>비행정보구역</option>
+            <option value='LT_C_AISRESC'>비행제한구역</option>
+            <option value='LT_C_AISCTRC'>관제권</option>
+            <option value='LT_C_AISUAC'>초경량비행장치공역</option>            
+        </select>
+    </div>
+    <div id="map" style="float: left; width: 800px; height: 400px;"></div>
+    <!-- WFS API를 호출하기 위한 데이터 셋 설정  -->
+    <div style="border: 1px solid RED; width: 800px; " >
+        <form id="wfsForm">
+            <input type="hidden" name="key" value="CEB52025-E065-364C-9DBA-44880E3B02B8">
+            <input type="hidden" name="domain" value="http://localhost:8080">
+            <input type="hidden" name="SERVICE" value="WFS">
+            <input type="hidden" name="version" value="1.1.0">
+            <input type="hidden" name="request" value="GetFeature">
+            <input type="hidden" name="TYPENAME" value="">
+            <input type="hidden" name="OUTPUT" value="text/javascript">
+            <input type="hidden" name="SRSNAME" value="EPSG:900913">
+            <input type="hidden" name="BBOX" value="">
+        </form>	
+        <DIV><span>wfs</span><div id="wfs_result"></div></DIV></li>
+    </div>
+    
+    <div style="clear: both; word-break:break-all; width: 1200px;"><span>wfs_url</span><div id="wfs_url"></div></div>
+    
+    <script type="text/javascript">
+    /* 오픈 레이어스에서 WMTS API를 이용 브이월드 배경지도를 호출  */
+        let wmts = new ol.layer.Tile({
+            source: new ol.source.XYZ({
+                url: 'https://api.vworld.kr/req/wmts/1.0.0/CEB52025-E065-364C-9DBA-44880E3B02B8/Base/{z}/{y}/{x}.png'
+            })
+        });
+        
+        let newProj = ol.proj.get('EPSG:3857'); // 사용 좌표계
+        let newProjExtent = newProj.getExtent(); // 지도의 범위
+        
+        
+        /* 뷰 설정 초기 위치 값 및 지도의 지원 줌레벨 현재 줌레벨 지도의 좌표계설정을 설정  */
+        let olView = new ol.View({
+        center: ol.proj.transform([127.100616,37.402142], 'EPSG:4326', 'EPSG:3857'),
+        zoom: 10,
+            minZoom : 5,
+            maxZoom : 21,
+            projection: newProj,
+        extent: newProjExtent || undefined // 해당 지역을 지도에서 벗어나지 않도록 설정
+        })
+        
+        /* 지도객체 설정 DIV 영역에 지도를 그림  */
+        let vmap = new ol.Map({
+        layers: [wmts], // 타일레이어를 올림
+        target: 'map', //대상이 되는 div 
+        view: olView 
+        });
+        
+        
+        /* 폴리곤의 스타일 설정 */
+        let vectorStyle = function(feature) {
+            let style = new ol.style.Style({
+                stroke: new ol.style.Stroke({
+                    color: [0, 256, 0, 1],
+                    width: 5
+                }),
+                fill: new ol.style.Fill({
+                    color: [256, 0, 0, .7]
+                })
+            });
+            return [style];
+        }
+        
+        newProj = ol.proj.get('EPSG:3857');
+        newProjExtent = newProj.getExtent();        
+        
+        
+        //대한민국 기준 좌표계는 projection 등록 후 사용 가능
+        
+        function updateViewProjection(viewProjSelect) {
+            
+            let newProj = ol.proj.get(viewProjSelect);
+            let newProjExtent, centerc;
+        
+            /* EPSG.io 에서 proj4 프로젝션 정보를 받아서 openlayers에 설정 구현
+            */
+            $.ajax({
+                type: "get",
+                url: "https://epsg.io/?format=json&q="+viewProjSelect,
+                data : $('#wfsForm').serialize(),
+                dataType: 'jsonp',
+                async: false,
+                jsonpCallback:"parseResponse",
+                success: function(data) {	
+                    let epsg = "EPSG:"+viewProjSelect;
+                    let epsg_proj4 = data.results[0].proj4;
+                    if(viewProjSelect==4326){
+                        //console.log(epsg_proj4);
+                        //epsg_proj4=epsg_proj4.replace("+no_defs","+axis=neu +no_defs");
+                    }else if(viewProjSelect==5186||viewProjSelect==5187||viewProjSelect==5188){
+                        //console.log(epsg_proj4);
+                        epsg_proj4=epsg_proj4.replace("+no_defs","+axis=neu +no_defs");
+                        //console.log(epsg_proj4);
+                        //5186,5187,5188 좌표계의 경우 x,y 순서를 바꿔주는 옵션이 필요함 +axis=neu
+                    }
+        
+                    proj4.defs(epsg, epsg_proj4); 
+                    ol.proj.proj4.register(proj4);
+                    newProj = ol.proj.get(epsg);
+                    let fromLonLat = ol.proj.getTransform('EPSG:4326', newProj); //270613.42427841784, 2486372.2503146906
+                    let extent = ol.extent.applyTransform([112.5, 29.53522956294847, 135, 45.089], fromLonLat);
+                    newProj.setExtent(extent);
+                    newProjExtent = newProj.getExtent();
+                    //centerc = [224578.25,402963.26]
+                    centerc = ol.proj.transform([127.100616,37.402142], 'EPSG:4326', epsg);
+                    console.log(data);
+        
+                    let olView2 = new ol.View({
+                        center : centerc,
+                        //center: ol.proj.transform([127.100616,37.402142], 'EPSG:4326', viewProjSelect),
+                        //center: ol.extent.getCenter(newProjExtent || [0, 0, 0, 0]),
+                        projection: newProj,
+                        extent: newProjExtent || undefined,
+                        zoom: 7,
+                            minZoom : 0,
+                            maxZoom : 21
+                    })
+                    vmap.setView(olView2);
+                },//success 종료
+                
+                error: function(xhr, stat, err) {}
+            });
+        }//updateViewProjection 종료
+        
+        
+        /* 지도의 클릭이벤트 설정 */
+        vmap.on('singleclick', function(evt) {
+            let pixel = evt.pixel;
+            vmap.getLayers().forEach(function(layer){
+                if(layer.get("name")=="wms_theme"){
+                    let selectlayer = layer.get("id")
+                    if(selectlayer.indexOf(",") >-1){
+                        selectlayer = selectlayer.split(",")[0]; //data API는 레이어 1개씩 조회가 가능해서 2개이상이 입력될경우 변경되도록 설정(지적도)
+                    }
+                    let min = vmap.getCoordinateFromPixel([evt.pixel[0] -4,evt.pixel[1]+4])
+                    let max = vmap.getCoordinateFromPixel([evt.pixel[0] +4,evt.pixel[1]-4])
+                    let box = min[0]+","+min[1]+","+max[0]+","+max[1]
+                    let code = vmap.getView().getProjection().getCode();
+                    
+                    /*WFS jsonp 테스트*/
+                    
+                    $('#wfsForm > [name=BBOX]').val(box);		
+                    $('#wfsForm > [name=SRSNAME]').val(code);
+                    $.ajax({
+                        type: "get",
+                        url: "https://api.vworld.kr/req/wfs",
+                        data : $('#wfsForm').serialize(),
+                        dataType: 'jsonp',
+                        async: false,
+                        jsonpCallback:"parseResponse",
+                        success: function(data) {
+                            turl = 'https://api.vworld.kr/req/wfs?'+$('#wfsForm').serialize();
+                            $('#wfs_url').html(`<a href="${turl}">${turl}</a>`)
+                            
+                            let vectorSource = new ol.source.Vector({features: (new ol.format.GeoJSON()).readFeatures(data)})
+                            
+                            vmap.getLayers().forEach(function(ollayer){
+                                if(ollayer.get("name")=="wfs_result"){
+                                    vmap.removeLayer(ollayer);//기존결과 삭제
+                                }
+                            })
+                            let vector_layer = new ol.layer.Vector({
+                                source: vectorSource,
+                                style: vectorStyle
+                            })
+                            
+                            vector_layer.set("name","wfs_result");
+                            vmap.addLayer(vector_layer);
+                            
+                            let resultFeature = vectorSource.getFeatures()[0]
+                            if(typeof resultFeature == "object"){
+                                let wfs_html="";
+                                for(let i in resultFeature.getKeys()){ 
+                                    wfs_html += resultFeature.getKeys()[i] + " = "+resultFeature.get(resultFeature.getKeys()[i])+"\n";
+                                }
+                                $('#wfs_result').html(wfs_html);
+                            }
+                        },
+                        
+                        error: function(xhr, stat, err) {}
+                    });
+                    
+                }
+            });
+        }); // 지도 클릭이벤트 설정 종료
+        
+        
+        
+        $(function(){
+            $(document).on('change','#select_wms',function(){
+                let this_val = $(this).val();
+                let this_title = $(this).prev().text();
+                $('[name=TYPENAME]').val(this_val.toLowerCase());
+                vmap.getLayers().forEach(function(layer){
+                    if(layer.get("name")=="wms_theme"){
+                        vmap.removeLayer(layer);//기존결과 삭제
+                    }
+                })
+                let code = vmap.getView().getProjection().getCode();
+                
+                let layer_tile = new ol.layer.Tile({
+                    title: this_title,
+                    id: this_val,
+                    name: "wms_theme", //vmap 올린 레이어를 삭제하거나 수정,변경할때 접근할 name 속성
+                    projection: code,
+                    extent: vmap.getView().getProjection().getExtent(), //[-20037508.34, -20037508.34, 20037508.34, 20037508.34]
+                    maxZoom: 18,
+                    minZoom: 10,
+                    tilePixelRatio: 1,
+                    tileSize: [512, 512],
+                    source: new ol.source.TileWMS({
+                        url: "https://api.vworld.kr/req/wms?",
+                        params: {
+                            LAYERS: this_val.toLowerCase(),
+                            STYLES: this_val.toLowerCase(),
+                            CRS: code,
+                            apikey: "CEB52025-E065-364C-9DBA-44880E3B02B8",
+                            DOMAIN:"http://loacalhost:8080",
+                            title: this_title,
+                            FORMAT: "image/png",
+                            WIDTH:512,
+                            HEIGHT:512
+                        }
+                    })
+                });
+                layer_tile.setZIndex(5);
+                vmap.addLayer(layer_tile);
+                
+            });//'change'
+        })
+    
+    
+    </script>
+</body>
+</html>
