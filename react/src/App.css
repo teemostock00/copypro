@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* 리액트 연습 중 */
+.react{
+  background:aqua;
+  color:black;
+  font-size: 48px;
+  font-weight: bold;
+  padding:16px;
+}
