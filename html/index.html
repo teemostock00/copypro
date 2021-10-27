@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animated.css">
     <link rel="stylesheet" href="css/owl.css">
-    <link rel="stylesheet" href="css/introduction.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/index.css">
     
     <title>로드</title>
 
@@ -22,63 +23,134 @@
 
     <!-- header -->
     <div data-include-path="header.html"></div>
-    <script>
-        window.addEventListener('load', function() {
-            var allElements = document.getElementsByTagName('*');
-            Array.prototype.forEach.call(allElements, function(el) {
-                var includePath = el.dataset.includePath;
-                if (includePath) {
-                    var xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function () {
-                        if (this.readyState == 4 && this.status == 200) {
-                            el.outerHTML = this.responseText;
-                        }
-                    };
-                    xhttp.open('GET', includePath, true);
-                    xhttp.send();
-                }
-            });
-        });
-    </script>
 
-    <!-- first -->
-    <div id="intro-content1" class="intro-section">
-        <div class="container">
+    <!-- slide -->
+    <div id="wrapper">
+        <div id="slider-wrap">
+            <ul id="slider">
+                <li>
+                    <img src="img/index/담양_메타쉐쿼이아길.png">
+                </li>
+    
+                <li>
+                    <img src="img/index/무등산.png">
+                </li>
+    
+                <li>
+                    <img src="img/index/순천만정원국가정원.jpg">
+                </li>
+    
+                <li>
+                    <img src="img/index/여수 돌산대교.jpg">
+                </li>
+            </ul>
+    
+            <!--controls-->
+            <div class="btns" id="next"><i class="bi bi-arrow-right-short"></i></div>
+            <div class="btns" id="previous"><i class="bi bi-arrow-left-short"></i></div>
+            
+    
+            <div id="pagination-wrap">
+                <ul>
+                </ul>
+            </div>
+            <!--controls-->
+    
+        </div>
+    
+    </div>
+
+    <!-- contents -->
+    <div id="portfolio" class="our-portfolio section">
+        <div class="container-fluid wow fadeIn" data-wow-duration="1s" data-wow-delay="0.7s">
             <div class="row">
-                <img src="img/introducation/page1.png">
+                <div class="col-lg-12">
+                    <div class="loop owl-carousel">
+                        <div class="item">
+                            <a href="#">
+                                <div class="portfolio-item">
+                                    <div class="thumb">
+                                        <img src="img/index/전라도1.PNG" alt="">
+                                    </div>
+                                    <div class="down-content">
+                                        <h4>전라도1</h4>
+                                        <span>전라남도</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <div class="portfolio-item">
+                                    <div class="thumb">
+                                        <img src="img/index/전라도2.PNG" alt="">
+                                    </div>
+                                    <div class="down-content">
+                                        <h4>전라도2</h4>
+                                        <span>전라남도</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <div class="portfolio-item">
+                                    <div class="thumb">
+                                        <img src="img/index/전라도3.PNG" alt="">
+                                    </div>
+                                    <div class="down-content">
+                                        <h4>전라도3</h4>
+                                        <span>전라남도</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <div class="portfolio-item">
+                                    <div class="thumb">
+                                        <img src="img/index/전라도4.PNG" alt="">
+                                    </div>
+                                    <div class="down-content">
+                                        <h4>전라도4</h4>
+                                        <span>전라남도</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <div class="portfolio-item">
+                                    <div class="thumb">
+                                        <img src="img/index/전라도5.PNG" alt="">
+                                    </div>
+                                    <div class="down-content">
+                                        <h4>전라도5</h4>
+                                        <span>전라남도</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-    <!-- second -->
-    <div id="intro-content1" class="intro-section">
-        <div class="container">
-            <div class="row">
-                <img src="img/introducation/page2.png">
-            </div>
-        </div>
-    </div>
-
     <!-- footer -->
     <div data-include-path="footer.html"></div>
-    <script>
-        window.addEventListener('load', function() {
-            var allElements = document.getElementsByTagName('*');
-            Array.prototype.forEach.call(allElements, function(el) {
-                var includePath = el.dataset.includePath;
-                if (includePath) {
-                    var xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function () {
-                        if (this.readyState == 4 && this.status == 200) {
-                            el.outerHTML = this.responseText;
-                        }
-                    };
-                    xhttp.open('GET', includePath, true);
-                    xhttp.send();
-                }
-            });
-        });
-    </script>
 
 </body>
+
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="js/index.js" defer type="text/javascript"></script>
+<script src="js/header-footer.js" defer type="text/javascript"></script>
+<script src="js/custom.js"></script>
+<script src="js/animation.js"></script>
+<script src="js/imagesloaded.js"></script>
+<script src="js/owl-carousel.js"></script>
+
+
+
+
 </html>
