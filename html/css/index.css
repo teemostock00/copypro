@@ -142,9 +142,11 @@ h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; marg
 
 
 .our-portfolio {
-    padding-top: 130px;
-    overflow: hidden;
-    position: relative;
+    margin:auto;
+    width:1140px;
+    height:400px;
+    position:relative;
+    overflow:hidden;
 }
 
 .our-portfolio:before {
@@ -176,6 +178,9 @@ h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; marg
 }
 
 .our-portfolio .item {
+    margin:auto;
+    width:300px;
+    height:300px;
     position: relative;
     z-index: 222;
 }
@@ -227,14 +232,10 @@ h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; marg
 .our-portfolio .owl-nav {
     display: inline-block!important;
     position: absolute;
-    top: -125px;
-    right: 15%;
+    left:42%;
     max-width: 1320px;
 }
 
-.our-portfolio .owl-nav .owl-next {
-    margin-left: 10px;
-}
 
 .our-portfolio .owl-nav span {
     width: 46px;
@@ -247,9 +248,12 @@ h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; marg
     border-radius: 50%;
     color: #fff;
     transition: all 0.5s;
+    margin-left:30px;
 }
 
 .our-portfolio .owl-nav span:hover {
     color: #fff;
-    background-color: #fe664e;
+    background-color: #A33333;
 }
+
+/* 태그 */
