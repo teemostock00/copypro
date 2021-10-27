@@ -4,5 +4,6 @@ html, body{
     padding: 0;
 }
 .map {
+    width: 80%;
     height: 80%;
 }
