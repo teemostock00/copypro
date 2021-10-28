@@ -97,3 +97,10 @@ header, nav, section, article, aside, footer, hgroup {
     display: block;
     clear: both;
 }
+
+/* line */
+.line{
+    margin:auto;
+    width:1320px;
+    border-top:1px solid #afafaf;
+}
