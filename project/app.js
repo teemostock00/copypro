@@ -12,8 +12,22 @@ app.listen(3000, function() {
 // 이제 터미널에 node app.js 를 입력해보자.
 
 // request 와 response 라는 인자를 줘서 콜백 함수를 만든다.
-// localhost:3000 브라우저에 res.send() 내부의 문자열이 띄워진다.
+// localhost:3000 브라우저에 res.sendFile() 내부의 파일이 띄워진다.
 
 app.get('/', function(req,res) {
-    res.send("<h1>hi friend!</h1>")
+    res.sendFile(__dirname + "/public/view/index.html")
 })
+
+// localhost:3000/main 브라우저에 res.sendFile() 내부의 파일이 띄워진다.
+app.get('/index', function(req,res) {
+    res.sendFile(__dirname + "/public/view/index.html")
+})
+
+app.get('/introducation', function(req,res) {
+    res.sendFile(__dirname + "/public/view/introducation.html")
+})
+
+
+// public 디렉토리를 static으로 기억한다.
+// public 내부의 파일들을 localhost:3000/파일명 으로 브라우저에서 불러올 수 있다.
+app.use(express.static('public'))
