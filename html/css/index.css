@@ -237,11 +237,11 @@ h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; marg
 
 .portfolio-item .down-content {
     background-color: #fff;
-    margin-left:30px;
     text-align: left;
     padding: 18px 0px;
     border-bottom-right-radius: 23px;
     border-bottom-left-radius: 23px;
+    padding-left:30px;
 }
 
 .portfolio-item .down-content span {
@@ -283,55 +283,136 @@ h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; marg
     overflow: hidden;
     position:relative;
     width:940px;
-    margin:0 auto 30px;
+    margin:0 auto 30px auto;
     margin-top:40px;
 }
 
-.hastage .hastaglist{
+.hastage .hastagelist{
     margin-left:-10px;
 }
 
-.hastage .hastaglist li{
+.hastage .hastagelist li{
     margin: 0 0 0 10px;
     float:left;
     height:50px;
 }
 
-.hastage .hastaglist li:hover{
+.hastage .hastagelist li a span:hover{
     background-color:#A33333;
     opacity: 1;
     color:white;
 }
 
-.hastage .hastaglist li a {
-        display:inline-block;
-        overflow:hidden;
-        background:#fff;
-        text-align: center;
-        font-size:16px;
-        color:#A33333;
-        border:1px solid #A33333;
-        border-radius: 5px;
+.hastage .hastagelist li a span {
+    width:120px;
+    display:inline-block;
+    overflow:hidden;
+    background:#fff;
+    text-align: center;
+    font-size:16px;
+    color:#A33333;
+    border:1px solid #A33333;
+    border-radius: 5px;
 }
 
-.hastage .hastaglist li a span{
+.hastage .hastagelist li a span{
     display:inline-block;
     height:38px;
     line-height: 38px;
     padding:0 20px;
 }
 
+.hastage .inr .btn_more{
+    display:block;
+    position:absolute;
+    bottom:10px;
+    right:0;
+    width:70px;
+    height:40px;
+    text-indent:-9999px;
+}
+
 
 /* 추천서비스 */
 .recommend{
-    margin:auto;
-    background-color:#666;
+    margin:0 auto 30px auto;
     width:1320px;
-    height:500px;
-    display: flex;
+    height:496px;
+    background:#fdecec;
+    position:relative;
 }
+.recommend .recommend-title{
+    padding:32px 0 0;
+    position:relative;
+    width:940px;
+    margin:0 auto;
+}
+
+.recommend .recommend-title h2{
+    width:100%;
+    height: 45px;
+    left:0px;
+    font-size:2em;
+}
+
+.recommend .recommend-title h2 a{
+    color:#A33333;
+    display:block;
+    height:30px;
+}
+
+.recommend .recommend-title h2 span{
+    color:#666;
+    font-size:0.5em;
+}
+
+.recommend .recommend-title button{
+    position:absolute;
+    right:0;
+    top:50px;
+    font-size:16px;
+    color: #A33333;
+    appearance: auto;
+    border:0 none;
+    border-bottom: 1px solid #A33333;
+    background-color:transparent;
+    cursor:pointer;
+}
+
+
+.rocommend .recommend-title button:after{
+    content:'';
+    display:block;
+    width:100%;
+    height:1px;
+    background:#333;
+    margin-top:2px;
+}
+
+.recommend .owl-carousel .owl-item{
+    width:230px !important;
+}
+
 .recommend .recommend-contents{
-    background-color:white;
-    width:660px;
-    height:300px;
+    margin:30px auto 10px auto;
+    left:30%
+}
+
+.recommend .recommend-contents .row{
+    width:1200px;
+    margin:auto;
+}
+
+.recommend .recommend-contents .portfolio-item{
+    width:200px;
+}
+
+.recommend .recommend-contents .down-content{
+    height:50px;
+    padding:13px 0px;
+    text-align: center;
+}
+
+.recommend .recommend-contents .down-content span{
+    font-size:1em;
 }
