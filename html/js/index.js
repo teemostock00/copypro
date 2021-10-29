@@ -175,4 +175,22 @@ $(document).ready(function () {
     });
 })
 
+
+// 추천서비스
+function swiperTabindex(target, activeIndex){
+	var slider = $(target),
+	sliderActiveIndex = activeIndex,
+	activeList = slider.find('.swiper-slide').eq(sliderActiveIndex),
+	tabNode, siblingsNode;
+	if(activeList.find('a').length){
+		tabNode = activeList.find('a'),
+		siblingsNode = activeList.siblings().find('a');
+	}else{
+		tabNode = activeList,
+		siblingsNode = activeList.siblings();
+	}
+	siblingsNode.attr('tabindex', '-1')
+	tabNode.attr('tabindex', '0')
+}
+
 // 해시태그
