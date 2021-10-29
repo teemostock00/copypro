@@ -1,0 +1,13 @@
+// localhost:3000/main 브라우저에 res.sendFile() 내부의 파일이 띄워진다.
+app.get('/index', function(req,res) {
+    res.sendFile(__dirname + "/public/view/index.html")
+})
+
+app.get('/introducation', function(req,res) {
+    res.sendFile(__dirname + "/public/view/introducation.html")
+})
+
+
+// public 디렉토리를 static으로 기억한다.
+// public 내부의 파일들을 localhost:3000/파일명 으로 브라우저에서 불러올 수 있다.
+app.use(express.static('public'))
