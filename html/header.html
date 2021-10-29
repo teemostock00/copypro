@@ -14,7 +14,12 @@
     <link rel="stylesheet" href="css/animated.css">
     <link rel="stylesheet" href="css/owl.css">
     <link rel="stylesheet" href="css/header.css">
+    <!--js-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/header.js"></script>
     <title>로드</title>
+
 </head>
 <body>
     <!-- 로딩창 -->
@@ -33,10 +38,12 @@
         <div class="container">
         <div class="row" style="flex-wrap:nowrap;">
             <div class="col-lg-9 col-sm-9 col-7">
-            <ul class="info">
+            <setion class="top_01">
                 <!-- 자바 스크립트로 현재 시간 출력 하는 곳 -->
-                <li><a href="#"><i class="fa fa-envelope"></i>Sat, Oct 23, 202, 22:38 KST (UTC+9) Seoul Korea</a></li>
-            </ul>
+                <span class="data" onload="clock()"></span>
+                <span>Seoul&nbsp;</span>
+                <span>Korea</span>
+            </setion>
             </div>
             <div class="col-lg-3 col-sm-3 col-5">
             <ul class="social-media">
@@ -86,8 +93,4 @@
 
 </body>
 
-<!--js-->
-<script>
-    
-</script>
 </html>
