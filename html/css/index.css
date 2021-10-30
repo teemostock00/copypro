@@ -473,6 +473,7 @@ h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; marg
 
 .box-calendar .calendar-top .title p{
     font-size:2em !important;
+    color:#A33333;
 }
 
 .box-calendar .calendar-top .btn-more{
@@ -511,6 +512,11 @@ button{
     color:#333;
 }
 
+.box-calendar .calendar table td.on button{
+    background-color:#dc4405;
+}
+
+.box-calendar .calendar table td button
 .box-calendar .calendar table th, .box-calendar .calendar table td{
     color:#000;
     text-align: center;
@@ -566,3 +572,71 @@ button{
     background-repeat:no-repeat;
     text-indent: -9999px;
 }
+
+/* 여행지 사진 추천 */
+
+
+.activity{
+    width:1000px;
+    height:300px;
+    margin:30px auto;
+    padding: 0 20px 27px;
+}
+
+.activity .activity-top{
+    width:1000px;
+    position:relative;
+    display:inline-block;
+    margin:0 auto 20px auto;
+}
+
+.activity .activity-top p{
+    color:#A33333;
+    font-size:2em !important;
+    text-align: center;
+}
+
+.activity .article{
+    width:300px;
+    padding:21px 19px 20px !important;
+    border:1px solid #e6e6e6;
+    border-radius: 10px;
+}
+
+.activity .article:hover{
+    background-color:#f7f7f7;
+    border-radius: 10px;
+}
+
+.activity .article .mdu-imgTitle p{
+    font-size:1.5em;
+    color:black;
+    text-align: center;
+}
+
+.activity .area-left{
+    float:left;
+    width:300px;
+}
+
+
+.article .mdu-imgTitle .imgView:last-child{
+    margin-bottom: 0;
+}
+
+.article .mdu-imgTitle .imgView{
+    width:100%;
+}
+
+.activity .area-mid{
+    float:left;
+    width:300px;
+    margin-left:30px;
+}
+
+.activity .area-right{
+    float:left;
+    width:300px;
+    margin-left:30px;
+}
+
