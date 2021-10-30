@@ -148,7 +148,7 @@ h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; marg
 }
 
 .second-contents-left{
-    width:600px;
+    width: 350px;
 }
 
 .second-contents-left p, span{
@@ -395,7 +395,8 @@ h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; marg
 
 .recommend .recommend-contents{
     margin:30px auto 10px auto;
-    left:30%
+    left:30%;
+    height:300px;
 }
 
 .recommend .recommend-contents .row{
@@ -415,4 +416,153 @@ h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; marg
 
 .recommend .recommend-contents .down-content span{
     font-size:1em;
+}
+
+.recommend .recommend-contents-wrapper{
+    margin-top:10px;
+    display:flex;
+    position:relative;
+    width:100%;
+    height:100%;
+    z-index:1;
+    justify-content: space-around;
+}
+
+.recommend .recommend-contents-wrapper .recommend-contents-slide{
+    float:left;
+    padding:0 10px;
+    width: 320px !important;
+    height:290px;
+}
+
+.recommend .recommend-contents-wrapper .recommend-contents-slide a{
+    display:block;
+    height:100%;
+    background:#fff;
+    border-radius:20px;
+}
+
+.recommend .recommend-contents-wrapper .recommend-contents-slide a span{
+    height:100%;
+    width:320px;
+    text-align:center;
+}
+
+/* 체험속으로 */
+.box-calendar{
+    width:1000px;
+    margin:0 auto;
+    padding:0 20px 27px;
+}
+
+.box-calendar .calendar-top{
+    position:relative;
+    display:inline-block;
+    margin:0 auto;
+}
+
+.box-calendar .calendar-top .btn-prev{
+    left:-59px;
+}
+
+.box-calendar .calendar-top .title{
+    position:relative;
+    padding:7px 0 19px 0;
+    text-align: center;
+}
+
+.box-calendar .calendar-top .title p{
+    font-size:2em !important;
+}
+
+.box-calendar .calendar-top .btn-more{
+    position:absolute;
+    top:18px;
+    right:-379px;
+    color:#333;
+    font-size:14px;
+    text-align: center;
+    padding-left:19px;
+}
+
+button{
+    border:0 none;
+    background-color:transparent;
+    cursor:pointer;
+}
+
+/* 캘린더 */
+.box-calendar .calendar{
+    margin-top:-3px;
+    border-top: 1px solid #7f7f7f;
+    padding:15px 0 0 ;
+}
+.box-calendar .calendar table td{
+    word-break: normal;
+}
+
+.box-calendar .calendar table td button{
+    display: block;
+    width:31px;
+    height:23px;
+    box-sizing: border-box;
+    font-size:18px;
+    font-weight: 400;
+    color:#333;
+}
+
+.box-calendar .calendar table th, .box-calendar .calendar table td{
+    color:#000;
+    text-align: center;
+}
+
+.box-calendar .calendar .saturday{
+    color:#2a7dee;
+}
+
+.box-calendar .calendar .sunday{
+    color:#dc4405;
+}
+
+/* 캘린더 이미지 */
+
+.box-calendar .calendar-list{
+    width:980px;
+
+}
+.box-calendar .calendar-list .list-calData{
+    margin-top: 21px;
+    text-align: left;
+    overflow: hidden;
+
+}
+.box-calendar .list-calData li{
+    float:left;
+    width:33.3%;
+}
+
+.box-calendar .list-calData li a{
+    display:block;
+    width:300px;
+    padding:20px 20px 0;
+    height:216px;
+    border:1px solid #e6e6e6;
+    border-radius: 10px;
+}
+
+.box-calendar .list-calData li a:hover{
+    background-color:#f7f7f7;
+    border-radius: 10px;
+}
+
+.box-calendar .calendar-list .calendar-img img{
+    display:block;
+    height:120px;
+    width:260px;
+    border-radius:8px;
+    margin:0 0 17px;
+    background-position: 50% 50%;
+    background-size:cover;
+    background-repeat:no-repeat;
+    text-indent: -9999px;
 }

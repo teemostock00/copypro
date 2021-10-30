@@ -194,3 +194,85 @@ function swiperTabindex(target, activeIndex){
 }
 
 // 해시태그
+
+
+
+// 달력
+function getSigungu() {
+
+	$.ajax({
+		url: mainurl+'/call',
+		dataType: 'json',
+		type: "POST",
+		data: {
+			cmd : 'RECOM_SIGUNGU_CODE'
+		},
+		success: function(data) {
+			sigunguObj = data;
+			areaListViewYN = 'Y';
+		},
+		complete: function() {
+
+			if( areacode != 'All') {
+				//선택한 지역 표시하기
+				goAreaChoiceView(areacode);
+			}
+
+		},
+		error: function(xhr, textStatus, errorThrown) {
+		}
+	});
+}
+
+//월 클릭시 ..
+$(document).on("click","#monthlist li button",function(){
+	var month = $(this).parents().attr('id');
+//		selectListTopRemove();
+	if( month == 'All') {
+		selectMonthRemove();
+		$(this).addClass('btn_all_active');
+		$(this).attr('title','선택됨');
+		smonth = 'All';
+	} else {
+
+		if( smonth == 'All') {
+			selectAllMonthRemove();
+			$(this).addClass('active');
+			$(this).attr('title','선택됨');
+		} else {
+			if( $( this ).attr('class') == 'btn active' ) {
+				$(this).removeClass('active');
+				$(this).attr('title','');
+			} else {
+				$(this).addClass('active');
+				$(this).attr('title','선택됨');
+			}
+		}
+
+		smonth = '';
+
+		$("#monthlist li button").each(function( index ) {
+			if( $( this ).attr('class') == 'btn active' ) {
+				if(smonth.length == 0 ) {
+					smonth =  $(this).parents().attr('id');
+				} else {
+					smonth +=  ','+$(this).parents().attr('id');
+				}
+			}
+		});
+	}
+	if(smonth.length == 0) {
+		smonth = 'All';
+		$('#monthlist #All button').addClass('btn_all_active');
+		$('#monthlist #All button').attr('title','선택됨');
+	}
+
+	spage = 1;
+
+	if( sOtdid != 'b55ffe10-84c3-11e8-8165-020027310001' ) {
+		$('.box_rightType1').removeClass('on');
+		$('body').css('overflow','');
+	}
+
+	getContentList();
+});

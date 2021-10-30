@@ -157,6 +157,15 @@
                 <li><a href="#"><span>#Su</span></a></li>
                 <li><a href="#"><span>#Su</span></a></li>
             </ul>
+            <ul class="hastagelist">
+                <li><a href="#"><span>#Su</span></a></li>
+                <li><a href="#"><span>#Su</span></a></li>
+                <li><a href="#"><span>#Su</span></a></li>
+                <li><a href="#"><span>#Su</span></a></li>
+                <li><a href="#"><span>#Su</span></a></li>
+                <li><a href="#"><span>#Su</span></a></li>
+                <li><a href="#"><span>#Su</span></a></li>
+            </ul>
         </div>
         <!--<button type="button" class="btn_more"></button>-->
     </div>
@@ -169,88 +178,16 @@
             </h2>
             <button type="button" onclick="layerPopup.layerShow('curationAreaPop');">location select</button>
         </div>
+        <!-- 추천사이트 내용 -->
         <div class="recommend-contents">
-            <!--<div class="container-fluid wow fadeIn" data-wow-duration="1s" data-wow-delay="0.7s">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="loop owl-carousel">
-                            <div class="item swiper-slide" data-swiper-slide-index="0">
-                                <a href="#">
-                                    <div class="portfolio-item">
-                                        <div class="thumb">
-                                            <img src="img/index/전라도1.PNG" alt="">
-                                        </div>
-                                        <div class="down-content">
-                                            <span>Domaine Ste. Michelle, Brut</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item swiper-slide" data-swiper-slide-index="1">
-                                <a href="#">
-                                    <div class="portfolio-item">
-                                        <div class="thumb">
-                                            <img src="img/index/전라도1.PNG" alt="">
-                                        </div>
-                                        <div class="down-content">
-                                            <span>Domaine Ste. Michelle, Brut</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item swiper-slide" data-swiper-slide-index="2">
-                                <a href="#">
-                                    <div class="portfolio-item">
-                                        <div class="thumb">
-                                            <img src="img/index/전라도1.PNG" alt="">
-                                        </div>
-                                        <div class="down-content">
-                                            <span>Domaine Ste. Michelle, Brut</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item swiper-slide" data-swiper-slide-index="3">
-                                <a href="#">
-                                    <div class="portfolio-item">
-                                        <div class="thumb">
-                                            <img src="img/index/전라도1.PNG" alt="">
-                                        </div>
-                                        <div class="down-content">
-                                            <span>Domaine Ste. Michelle, Brut</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item swiper-slide" data-swiper-slide-index="4">
-                                <a href="#">
-                                    <div class="portfolio-item">
-                                        <div class="thumb">
-                                            <img src="img/index/전라도1.PNG" alt="">
-                                        </div>
-                                        <div class="down-content">
-                                            <span>Domaine Ste. Michelle, Brut</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item swiper-slide" data-swiper-slide-index="5">
-                                <a href="#">
-                                    <div class="portfolio-item">
-                                        <div class="thumb">
-                                            <img src="img/index/전라도1.PNG" alt="">
-                                        </div>
-                                        <div class="down-content">
-                                            <span>Domaine Ste. Michelle, Brut</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            -->
+            <div class="recommend-contents-wrapper" id="curationlist">
+                <div class="recommend-contents-slide" data-swiper-slide-index="0"><a><img src="../img/index/전라도1.PNG"><span>전라도1</span></sapn></a></div>
+                <div class="recommend-contents-slide" data-swiper-slide-index="0"><a><img src="../img/index/전라도1.PNG"><span>전라도1</span></sapn></a></div>
+                <div class="recommend-contents-slide" data-swiper-slide-index="0"><a><img src="../img/index/전라도1.PNG"><span>전라도1</span></sapn></a></div>
+                <div class="recommend-contents-slide" data-swiper-slide-index="0"><a><img src="../img/index/전라도1.PNG"><span>전라도1</span></sapn></a></div>
+            </div>
         </div>
+            <!-- 만들고 싶었던 슬라이드 -->
             <div class="page">
                 <div class="recommend-contentsbar">
                     <span class=""></span>
@@ -268,9 +205,78 @@
     </div>
 
     <!-- 체험속으로  -->
+    <div class="box-calendar">
+        <div class="calendar-top">
+            <button type="button" onclick="setNewCalendar(-1);" class="btn-prev"><span class="ico">이전</span></button>
+            <div class="title">
+                <a><img src="" class="ico"><p class="title-text">K-Cultural Experiences</p></a>
+            </div>
+            <button type="button" onclick="setNewCalendar(1);" class="btn-next"><span class="ico">다음</span></button>
+            <a href="" class="btn-more">more</a>
+        </div>
+        <div class="calendar">
+            <table>
+                <tbody id="calendarUi">
+                    <tr>
+                        <td><button type="button" id="1">1</button></td>
+                        <td><button type="button" id="2">2</button></td>
+                        <td><button type="button" id="3">3</button></td>
+                        <td><button type="button" id="4">4</button></td>
+                        <td><button type="button" id="5">5</button></td>
+                        <td><button type="button" class="saturday" id="6">6</button></td>
+                        <td><button type="button" class="sunday" id="7">7</button></td>
+                        <td><button type="button" id="8">8</button></td>
+                        <td><button type="button" id="9">9</button></td>
+                        <td><button type="button" id="10">10</button></td>
+                        <td><button type="button" id="11">11</button></td>
+                        <td><button type="button" id="12">12</button></td>
+                        <td><button type="button" class="saturday" id="13">13</button></td>
+                        <td><button type="button" class="sunday"id="14">14</button></td>
+                        <td><button type="button" id="15">15</button></td>
+                        <td><button type="button" id="16">16</button></td>
+                        <td><button type="button" id="17">17</button></td>
+                        <td><button type="button" id="18">18</button></td>
+                        <td><button type="button" id="19">19</button></td>
+                        <td><button type="button" class="saturday" id="20">20</button></td>
+                        <td><button type="button" class="sunday"id="21">21</button></td>
+                        <td><button type="button" id="22">22</button></td>
+                        <td><button type="button" id="23">23</button></td>
+                        <td><button type="button" id="24">24</button></td>
+                        <td><button type="button" id="25">25</button></td>
+                        <td><button type="button" id="26">26</button></td>
+                        <td><button type="button" class="saturday" id="27">27</button></td>
+                        <td><button type="button" class="sunday"id="28">28</button></td>
+                        <td><button type="button" id="29">29</button></td>
+                        <td><button type="button" id="30">30</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="calendar-list">
+            <ul class="list-calData">
+                <li><a href="#" onclick="" title="">
+                    <span class="calendar-img"><img src="../img/index/전라도1.PNG"></span>
+                    <em>date</em>
+                    <strong>title</strong>
+                    <span></span>
+                </a></li>
+                <li><a href="#" onclick="" title="">
+                    <span class="calendar-img"><img src="../img/index/전라도1.PNG"></span>
+                    <em>date</em>
+                    <strong>title</strong>
+                    <span></span>
+                </a></li>
+                <li><a href="#" onclick="" title="">
+                    <span class="calendar-img"><img src="../img/index/전라도1.PNG"></span>
+                    <em>date</em>
+                    <strong>title</strong>
+                    <span></span>
+                </a></li>
+            </ul>
+        </div>
+    </div>
 
     <!-- 여행지 사진 추천 -->
-
     <div class="line"></div>
 
     </div>
