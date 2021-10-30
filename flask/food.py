@@ -3,10 +3,10 @@ import cv2
 import numpy as np
 from keras.applications.vgg16 import VGG16, decode_predictions
 
-model = load_model('./food.h5')
+model = load_model('./food_tm.h5')
 
 def place(imgpath):
-    im = cv2.resize(cv2.imread(imgpath),(150,150))
+    im = cv2.resize(cv2.imread(imgpath),(224,224))
     im = np.expand_dims(im, axis=0)
 
     prediction=np.argmax(model.predict(im), axis=-1)
