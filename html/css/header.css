@@ -164,6 +164,11 @@
 }
 */
 
+.header-area .main-nav .nav{
+    padding-top:30px;
+    padding-left: 10px;
+}
+
 .header-area .main-nav .nav li {
     padding-left: 20px;
     padding-right: 20px;

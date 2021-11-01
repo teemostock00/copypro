@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="../css/animated.css">
     <link rel="stylesheet" href="../css/owl.css">
     <link rel="stylesheet" href="../css/introduction.css">
+    <link rel="stylesheet" href="../css/map.css">
+    
     
     <title>로드</title>
 </head>
@@ -21,8 +23,8 @@
     <!-- header -->
     <div data-include-path="header.html"></div>
     
-    
-
+    <!-- 지도 -->
+    <div class="map"></div>    
 
 
     <!-- footer -->
@@ -30,4 +32,8 @@
 
 </body>
     <script src="../js/header-footer.js" defer type="text/javascript"></script>
+    <script src="../js/map.js"></script>
+    <script src = "https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <!-- region=kr을 추가해주어야 동해로 표기 된다! -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRalWsY3QyTGM1vFQeDpOmoRvXsy9dL8U&callback=initMap&region=kr"></script>
 </html>
